@@ -9,7 +9,7 @@ export const theme = {
       'lsm': '320px'
     },
     colors: {
-      'Primary': '#FF0000',
+      'Primary': '#111921',
       'Secondary': '#2D2D2D',
       'white200': '#F8F8F8',
       'FooterGray': '#F0F0F0',
