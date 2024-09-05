@@ -10,3 +10,10 @@ export interface IUpcomingEvents {
     date: number,
     img: string
 }
+
+export interface DropdownProps {
+    options: string[];
+    onSelect: (value: string) => void;
+    maxWidth?: string
+    placeholder: string
+}

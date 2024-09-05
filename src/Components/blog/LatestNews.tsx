@@ -11,7 +11,7 @@ export const LatestNews = () => {
                 <AppMiniLogo />
             </div>
             <p className="text-light300 font-medium text-sm mb-2">LAGOS BEST NIGHTCLUB</p>
-            <h3 id='upcoming-events' className="text-light300 font-normal text-[.95rem] ssm:text-lg sm:text-3xl font-montserrat">OUR LATEST NEWS</h3>
+            <h3 id='upcoming-events' className="text-light300 font-normal text-lg sm:text-3xl font-montserrat">OUR LATEST NEWS</h3>
             <div className="flex gap-4 md:gap-6 justify-center mt-16 flex-wrap lg:w-[90%] mx-auto">
                 {news.map((news: IUpcomingEvents, index: number) =>
                     <article key={index} className="border-red-primary border-[1px] rounded-[4px] overflow-hidden bg-white max-w-[450px] grow basis-[300px]">

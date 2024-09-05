@@ -15,12 +15,8 @@ export const theme = {
       'yellow300': '#E2B756',
       'red-primary': '#D12229',
       'light300': '#F4F4F4',
+      'light400': '#F8F8F8',
       'ash100': '#7A7A7A',
-      'FooterGray': '#F0F0F0',
-      'Black': '#000000',
-      'transparentDark': 'hsla(0, 0%, 13%, 0.8)',
-      'borderHash': '#BABABA',
-      'borderCartActions': '#999999'
     },
     fontFamily: {
       montserrat: ['Montserrat', 'sans-serif'],

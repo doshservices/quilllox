@@ -1,18 +1,12 @@
-import { Link } from "react-router-dom";
-import { styles } from "../../utils/styles";
+import { IUpcomingEvents } from "../../utils/interface";
 import UpComingEventCard from "./UpComingEventCard";
-import { upcomingEvents } from "../../data/upcomingEvents";
 
-const UpComingEvents = () => {
+const UpComingEvents = ({ events, rows }: { events: IUpcomingEvents[], rows: string }) => {
 
     return (
-        <section id='upcoming-events' className="px-[5%] py-16">
-            <div className="flex items-center justify-between gap-4 flex-wrap mb-8">
-                <h3 id='upcoming-events' className="text-light300 font-normal text-[.95rem] ssm:text-lg sm:text-3xl font-montserrat">UPCOMING EVENTS</h3>
-                <Link className={`${styles?.primaryBtn} text-[.8rem] ssm:text-sm text-white`} to='/'>View all events</Link>
-            </div>
-            <div className="grid xsm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-                {upcomingEvents.map((event, index) =>
+        <section id='upcoming-events'>
+            <div className={`grid ${rows} gap-4 md:gap-6 lg:gap-8`}>
+                {events?.map((event: IUpcomingEvents, index: number) =>
                     <UpComingEventCard
                         key={index}
                         {...event}
