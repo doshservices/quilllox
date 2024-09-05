@@ -5,4 +5,5 @@
 
 body {
     background-color: #111921;
+    grid-template-columns: fit-content, 1fr;
 }

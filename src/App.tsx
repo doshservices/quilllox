@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppNav from "./Components/AppNav";
+import HomePage from "./Pages/Index";
+import { AppFooter } from "./Components/AppFooter";
 
 const App = () => {
 
@@ -7,7 +9,9 @@ const App = () => {
     <BrowserRouter>
       <AppNav />
       <Routes>
+        <Route path="/" element={<HomePage />} />
       </Routes>
+      <AppFooter />
     </BrowserRouter>
   )
 }
