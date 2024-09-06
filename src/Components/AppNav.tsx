@@ -14,7 +14,7 @@ const AppNav = () => {
                 <div className="grow flex justify-between items-center basis-[100px]">
                     <NavLink to="/">GALLERY</NavLink>
                     <NavLink to="/">FAQs</NavLink>
-                    <NavLink to="/">CONTACT</NavLink>
+                    <NavLink to="/contact">CONTACT</NavLink>
                 </div>
             </nav>
         </header>
