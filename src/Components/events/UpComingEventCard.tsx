@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import { IUpcomingEvents } from "../../utils/interface";
 
 const UpComingEventCard = (event: IUpcomingEvents, border?: string, bg?: string) => {
+    const name = event?.name?.replace(/\s+/g, '-')
 
     return (
-        <div className="text-white font-montserrat">
+        <Link to={`/event/${name}/${event.day}`} className="text-white font-montserrat block">
             <img src={event.img} className="w-full" alt={event.name} />
             <div className={`flex items-center gap-3 pt-4 ${bg} ${border}`}>
                 <p role='time' className="text-center pr-2 border-r-[2px] border-r-white">
@@ -13,7 +15,7 @@ const UpComingEventCard = (event: IUpcomingEvents, border?: string, bg?: string)
                 </p>
                 <p className="grow text-sm lg:text-base">{event.name}</p>
             </div>
-        </div>
+        </Link>
     )
 }
 

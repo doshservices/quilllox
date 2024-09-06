@@ -19,7 +19,7 @@ const AllEvents = () => {
                     <p className="text-ash100 text-sm font-nunito leading-[1.8]">Immersed in an exquisite Red, Gold and Black theme, Quilox is your one-stop hub for grandee relaxation and nightlife activity. We aim to provide A-listers, jet-setters, high rollers and nightlife aficionados from all over the room to dance and dine mingle and network.</p>
                 </div>
             </section>
-            <div className="px-[8%] py-16">
+            <div className="px-[5%] sm:px-[8%] py-16">
                 <div className="flex items-center justify-between mb-8">
                     <DateDropdown
                         placeholder="Aug 27, 2024"
@@ -42,14 +42,14 @@ const AllEvents = () => {
                     </div>
                 </div>
                 <section id='upcoming-events'>
-                    <div className={`grid xsm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8`}>
+                    <div className={`grid ssm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8`}>
                         {events?.map((event: IUpcomingEvents, index: number) =>
                             <div key={index} className="border-[1px] border-red-primary rounded-[4px] overflow-hidden">
                                 <div className="text-white font-montserrat bg-[#1C141B]">
                                     <figure className="overflow-hidden">
                                         <img src={event.img} className="w-full scale-105" alt={event.name} />
                                     </figure>
-                                    <div className={`flex items-center gap-3 py-4 px-4 md:px-6`}>
+                                    <div className={`flex items-center gap-3 py-4 px-2 md:px-6`}>
                                         <p role='time' className="text-center pr-2 border-r-[1px] border-r-white">
                                             <span className="block text-xs md:text-sm">{event.month}</span>
                                             <span className="text-lg md:text-[1.4rem] leading-[1.2] block">{event.date}</span>

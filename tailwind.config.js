@@ -23,7 +23,7 @@ export const theme = {
       nunito: ['Nunito Sans', 'sans-serif'],
     },
     boxShadow: {
-      'shawdowCart': '0px 1px 2px 0px #1018280D'
+      'shawdowBooking': '0px 8px 8px 0px #00000033'
     }
   },
 };

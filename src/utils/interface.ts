@@ -12,8 +12,17 @@ export interface IUpcomingEvents {
 }
 
 export interface DropdownProps {
-    options: string[];
-    onSelect: (value: string) => void;
+    options: number[];
+    onSelect: (value: number) => void;
     maxWidth?: string
     placeholder: string
+}
+
+export interface ITicket {
+    borderColor: string
+    position: string
+    ticket: {
+        type: string
+        price: number
+    }[]
 }
