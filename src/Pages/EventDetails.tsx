@@ -35,7 +35,7 @@ const EventDetails = () => {
                                 </svg>
                             </div>
                         </section>
-                        <button className={`${styles.primaryBtn} mx-auto`}>Book Now</button>
+                        <Link to='/checkout' className={`${styles.primaryBtn} mx-auto w-fit`}>Book Now</Link>
                     </section>
                     <Link to='/all-events' className="grid ssm:grid-cols-[52px,_1fr,_52px] items-center gap-4 ssm:gap-8 font-nunito text-[.93rem] bg-[#1C141B] rounded-[4px] border-[1px] border-[#0000001A]">
                         <svg width="50" height="40" viewBox="0 0 50 40" fill="none" xmlns="http://www.w3.org/2000/svg">

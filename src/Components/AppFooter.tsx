@@ -1,4 +1,4 @@
-import { AppLogo } from "../assets/AppLogo"
+import footerlogo from '../assets/footerLogo.png'
 
 export const AppFooter = () => {
     return (
@@ -20,7 +20,7 @@ export const AppFooter = () => {
                     </svg>
                 </a>
             </div>
-            <AppLogo height="167" width="146" />
+            <img src={footerlogo} className='h-[130px] sm:h-auto' alt="footerLogo" />
             <p className="text-white font-nunito font-light text-sm sm:basis-[200px] basis-0 grow text-center sm:text-right">Quilox Nightclub © 2024. All Rights Reserved.</p>
         </footer>
     )

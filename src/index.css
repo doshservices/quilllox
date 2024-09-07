@@ -6,3 +6,7 @@
 body {
     background-color: #111921;
 }
+
+button {
+    transition: all .3s ease-in-out;
+}
