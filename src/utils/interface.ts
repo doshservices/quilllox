@@ -18,6 +18,13 @@ export interface DropdownProps {
     placeholder: string
 }
 
+export interface DateDropdownProps {
+    options: string[];
+    onSelect: (value: string) => void;
+    maxWidth?: string
+    placeholder: string
+}
+
 export interface ITicket {
     borderColor: string
     position: string

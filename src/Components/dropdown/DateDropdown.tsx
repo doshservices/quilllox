@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { DropdownProps } from '../../utils/interface';
+import { DateDropdownProps } from '../../utils/interface';
 
-const DateDropdown = ({ options, onSelect, placeholder, maxWidth }: DropdownProps) => {
+const DateDropdown = ({ options, onSelect, placeholder, maxWidth }: DateDropdownProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
