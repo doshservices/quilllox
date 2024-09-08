@@ -2,7 +2,7 @@ import footerlogo from '../assets/footerLogo.png'
 
 export const AppFooter = () => {
     return (
-        <footer className="flex flex-col sm:flex-row items-center gap-8 justify-between px-[8%] py-16">
+        <footer className="flex flex-col sm:flex-row items-center gap-8 justify-between px-[8%] py-16 bg-Primary200">
             <div className="flex items-center gap-6 grow sm:basis-[200px] basis-0">
                 <a>
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

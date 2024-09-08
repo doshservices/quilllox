@@ -9,10 +9,10 @@ import { frontTicket } from '../data/frontTicket'
 const EventDetails = () => {
     return (
         <>
-            <figure>
+            <figure className='bg-[#171016] relative z-10'>
                 <img className='w-full' src={asakeBanner} alt="event img" />
             </figure>
-            <div className='text-white grid sm:grid-cols-[300px,_1fr] gap-x-8 md:gap-x-[8%] gap-y-8 mx-6 lg:px-[8%] py-12'>
+            <div className='text-white grid sm:grid-cols-2 md:grid-cols-[300px,_1fr] gap-x-8 md:gap-x-[8%] gap-y-8 px-[5%] lg:px-[9%] py-12 bg-[#171016] border-b-red-primary border-b-[1px]'>
                 <div className='ssm:max-w-[300px]'>
                     <img src={tourLogo} className='w-full mx-auto' alt="" />
                     <section className='bg-[#1C141B] my-6 rounded-[4px] p-4 border-[1px] border-[#0000001A]'>
@@ -37,7 +37,7 @@ const EventDetails = () => {
                         </section>
                         <Link to='/checkout' className={`${styles.primaryBtn} mx-auto w-fit`}>Book Now</Link>
                     </section>
-                    <Link to='/all-events' className="grid ssm:grid-cols-[52px,_1fr,_52px] items-center gap-4 ssm:gap-8 font-nunito text-[.93rem] bg-[#1C141B] rounded-[4px] border-[1px] border-[#0000001A]">
+                    <Link to='/all-events' className="grid grid-cols-[52px,_1fr] lsm:grid-cols-[52px,_1fr,_52px] text-center items-center gap-4 ssm:gap-8 font-nunito text-[.93rem] bg-[#1C141B] rounded-[4px] border-[1px] border-[#0000001A]">
                         <svg width="50" height="40" viewBox="0 0 50 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="49" height="39" rx="1.5" stroke="#E2B756" />
                             <g clip-path="url(#clip0_128_6662)">
@@ -53,7 +53,7 @@ const EventDetails = () => {
                         <span>Back to All Events</span>
                     </Link>
                 </div>
-                <div className='shadow-shawdowBooking py-4 px-5 bg-[#1C141B] h-fit rounded-[4px]'>
+                <div className='shadow-shawdowBooking py-4 px-4 sm:px-5 bg-[#1C141B] h-fit rounded-[4px]'>
                     <p className="bg-[#FFFBEC] font-nunito text-[.815rem] text-[#222222] rounded-md p-3">
                         This event is for 18 and over - No refunds will be issued for under 18s.
                     </p>

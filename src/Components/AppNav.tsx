@@ -3,7 +3,7 @@ import { AppLogo } from "../assets/AppLogo";
 
 const AppNav = () => {
     return (
-        <header className="text-white font-montserrat font-medium text-sm px-[5%] py-2">
+        <header className="text-white font-montserrat font-medium text-sm px-[5%] py-2 border-b-red-primary border-b-[1px]">
             <nav className="flex justify-between items-center gap-[7%]">
                 <div className="grow flex justify-between items-center basis-[100px]">
                     <NavLink to="/">SPECIAL EVENTS</NavLink>

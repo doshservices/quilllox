@@ -3,10 +3,42 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: #111921;
-}
-
 button {
     transition: all .3s ease-in-out;
+}
+
+body::before {
+    display: block;
+    content: '';
+    position: absolute;
+    background: #D12229;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    left: 1rem;
+    pointer-events: none;
+    z-index: 10;
+}
+
+body::after {
+    display: block;
+    content: '';
+    position: absolute;
+    background: #D12229;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    right: 1rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@media (max-width: 520px) {
+    body::after {
+        right: .6rem;
+    }
+
+    body::before {
+        left: .6rem;
+    }
 }

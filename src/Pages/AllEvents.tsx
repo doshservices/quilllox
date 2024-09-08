@@ -1,15 +1,18 @@
+import { Link } from "react-router-dom";
 import { AppMiniLogo } from "../assets/AppLogo";
 import DateDropdown from "../Components/dropdown/DateDropdown";
 import { PrivateHire } from "../Components/PrivateHire";
 import { upcomingEvents } from "../data/upcomingEvents";
+import { appLogoBg } from "../utils/constants";
 import { IUpcomingEvents } from "../utils/interface";
 
 const AllEvents = () => {
     const events = [...upcomingEvents, ...upcomingEvents.slice(1, 3)]
-
+    // const name = event?.name?.replace(/\s+/g, '-')
     return (
         <>
-            <section className="text-center clear-startflex justify-center items-center px-[8%] py-16">
+            <section className="text-center clear-startflex justify-center items-center px-[8%] py-16 relative z-10 bg-Primary200 overflow-hidden">
+                <img src={appLogoBg} alt="app logo" className="max-w-[70%] sm:h-[97%] absolute z-[-1] opacity-5 left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]" />
                 <div>
                     <div className="mx-auto w-fit mb-3">
                         <AppMiniLogo />
@@ -19,7 +22,7 @@ const AllEvents = () => {
                     <p className="text-ash100 text-sm font-nunito leading-[1.8]">Immersed in an exquisite Red, Gold and Black theme, Quilox is your one-stop hub for grandee relaxation and nightlife activity. We aim to provide A-listers, jet-setters, high rollers and nightlife aficionados from all over the room to dance and dine mingle and network.</p>
                 </div>
             </section>
-            <div className="px-[5%] sm:px-[8%] py-16">
+            <div className="px-[5%] sm:px-[8%] py-16 border-t-red-primary border-t-[1px] border-b-red-primary border-b-[1px]">
                 <div className="flex items-center justify-between mb-8">
                     <DateDropdown
                         placeholder="Aug 27, 2024"
@@ -44,7 +47,7 @@ const AllEvents = () => {
                 <section id='upcoming-events'>
                     <div className={`grid ssm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8`}>
                         {events?.map((event: IUpcomingEvents, index: number) =>
-                            <div key={index} className="border-[1px] border-red-primary rounded-[4px] overflow-hidden">
+                            <Link to={`/event/${event?.name?.replace(/\s+/g, '-')}/${event?.day}`} key={index} className="border-[1px] border-red-primary rounded-[4px] overflow-hidden block">
                                 <div className="text-white font-montserrat bg-[#1C141B]">
                                     <figure className="overflow-hidden">
                                         <img src={event.img} className="w-full scale-105" alt={event.name} />
@@ -58,7 +61,7 @@ const AllEvents = () => {
                                         <p className="grow text-sm lg:text-base">{event.name}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         )}
                     </div>
                 </section>

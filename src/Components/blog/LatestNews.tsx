@@ -6,7 +6,7 @@ import { styles } from "../../utils/styles"
 export const LatestNews = () => {
 
     return (
-        <section className="text-center font-montserrat px-[5%] py-16 bg-[#111921]">
+        <section className="text-center font-montserrat px-[5%] py-16 bg-Primary">
             <div className="mx-auto w-fit mb-3">
                 <AppMiniLogo />
             </div>

@@ -12,6 +12,8 @@ export const theme = {
     },
     colors: {
       'Primary': '#111921',
+      'Primary200': '#1a151c',
+      'Secondary': '#1C141B',
       'yellow300': '#E2B756',
       'red-primary': '#D12229',
       'light300': '#F4F4F4',
