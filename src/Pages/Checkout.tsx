@@ -2,6 +2,7 @@ import { useState } from 'react';
 import tourLogo from '../assets/35f1cf5d-17a3-4eac-bfa0-1f2bfe2f59ec.png'
 import { PaymentForm } from '../Components/Checkout/PaymentForm';
 import { PaymentMethod } from '../Components/Checkout/PaymentMethod';
+import { PrivateHire } from '../Components/PrivateHire';
 
 const Checkout = () => {
 
@@ -12,26 +13,26 @@ const Checkout = () => {
 
     return (
         <>
-            <div className="text-white font-montserrat flex px-[5%] justify-between items-center gap-4 py-4 flex-wrap">
+            <div className="text-white font-montserrat flex px-[5%] justify-between items-center gap-4 py-6 flex-wrap border-b-red-primary border-b-[1px]">
                 <p className="text-xl sm:text-3xl">CHECKOUT</p>
                 <div className="flex items-center justify-between gap-y-4 gap-x-4 sm:gap-x-12">
                     <button
                         className={paymentTab === 'method' ?
-                            "py-2.5 text-sm sm:text-lg border-b-red-primary border-b-[1px]"
+                            "py-2.5 text-sm sm:text-base border-b-red-primary border-b-[1px]"
                             :
-                            "py-2.5 text-sm sm:text-lg text-[#F8F8F866] border-b-transparent border-b-[1px]"
+                            "py-2.5 text-sm sm:text-base text-[#F8F8F866] border-b-transparent border-b-[1px]"
                         }
                         onClick={() => switchTabs('method')}>Order Summary</button>
                     <button
                         className={paymentTab === 'details' ?
-                            "py-2.5 text-sm sm:text-lg border-b-red-primary border-b-[1px]"
+                            "py-2.5 text-sm sm:text-base border-b-red-primary border-b-[1px]"
                             :
-                            "py-2.5 text-sm sm:text-lg text-[#F8F8F866] border-b-transparent border-b-[1px]"
+                            "py-2.5 text-sm sm:text-base text-[#F8F8F866] border-b-transparent border-b-[1px]"
                         }
                         onClick={() => switchTabs('details')}>Your Details</button>
                 </div>
             </div>
-            <div className='text-white grid sm:grid-cols-[300px,_1fr] gap-x-8 md:gap-x-[8%] gap-y-8 mx-6 lg:px-[8%] py-12 relative'>
+            <div className='text-white grid sm:grid-cols-2 md:grid-cols-[300px,_1fr] gap-x-8 md:gap-x-[8%] gap-y-8 px-[5%] lg:px-[9%] py-12 relative bg-[#171016]'>
                 <div className="ssm:max-w-[300px]">
                     <div className='static top-4 sm:sticky'>
                         <img src={tourLogo} className='w-full mx-auto' alt="" />
@@ -55,6 +56,7 @@ const Checkout = () => {
                     }
                 </div>
             </div>
+            <PrivateHire />
         </>
     )
 }
