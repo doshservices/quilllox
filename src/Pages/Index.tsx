@@ -34,7 +34,7 @@ const HomePage = () => {
                     </div>
                 </section>
             </div>
-            <section className="px-[5%] py-16 text-center relative overflow-hidden bg-Primary200">
+            <section className="px-[5%] py-16 text-center relative overflow-hidden bg-Primary200 isolate">
                 <img src={appLogoBg} alt="app logo" className="max-w-[70%] sm:h-[97%] absolute z-[-1] opacity-5 left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]" />
                 <div className="mx-auto w-fit mb-3">
                     <AppMiniLogo />

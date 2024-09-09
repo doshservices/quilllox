@@ -29,16 +29,14 @@ const AppNav = () => {
             </div>
             <nav ref={navRef}
                 className="app-nav flex justify-between items-center gap-5 md:gap-[7%]">
+                <NavLink onClick={showMenu} className='block mb-6 md:mb-0' to="/">
+                    <AppLogo />
+                </NavLink>
                 <div className="fixed bg-black/40 inset-0 pointer-events-none -z-10 top-[60px] md:hidden"></div>
-                <div className="md:grow flex flex-col gap-8 md:gap-0 md:flex-row justify-between mb-5 md:mb-0 md:items-center basis-[100px] order-2 md:order-1">
+                <div className="flex flex-col gap-6 md:flex-row justify-between mb-5 md:mb-0 md:items-center">
                     <NavLink onClick={showMenu} to="/">SPECIAL EVENTS</NavLink>
                     <NavLink onClick={showMenu} to="/">VENUE</NavLink>
                     <NavLink onClick={showMenu} to="/">DRINKS</NavLink>
-                </div>
-                <NavLink onClick={showMenu} className='order-1 md:order-2 block mb-6 md:mb-0' to="/">
-                    <AppLogo />
-                </NavLink>
-                <div className="md:grow flex flex-col gap-8 md:gap-0 md:flex-row justify-between md:items-center basis-[100px] order-3">
                     <NavLink onClick={showMenu} to="/">GALLERY</NavLink>
                     <NavLink onClick={showMenu} to="/">FAQs</NavLink>
                     <NavLink onClick={showMenu} to="/contact">CONTACT</NavLink>
