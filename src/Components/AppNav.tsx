@@ -19,9 +19,9 @@ const AppNav = () => {
 
     return (
         <header ref={headerRef} className="app-header w-full text-white font-montserrat font-medium text-sm px-[5%] md:py-2 border-b-red-primary border-b-[1px] relative z-50">
-            <div className="md:hidden">
+            <NavLink to='/' className="md:hidden">
                 <AppMiniLogo />
-            </div>
+            </NavLink>
             <div onClick={showMenu} className="flex flex-col gap-1.5 cursor-pointer w-fit md:hidden">
                 <span className="inline-block bg-white h-[1.5px] w-6"></span>
                 <span className="inline-block bg-white h-[1.5px] w-6"></span>
