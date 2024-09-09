@@ -43,3 +43,40 @@ body::after {
         left: .4rem;
     }
 }
+
+@media (max-width: 768px) {
+    .app-header {
+        position: fixed;
+        top: 0;
+        background: #1a151c;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+    }
+
+    .app-nav {
+        padding: 4rem 5% 8rem 5%;
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        background: #1a151c;
+        height: 100vh;
+        width: clamp(200px, 100%, 300px);
+        overflow-y: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        left: -100%;
+        transition: all .3s ease-in-out;
+        opacity: 0;
+        pointer-events: none;
+        will-change: left, opacity, pointer-events;
+    }
+
+    .active-menu {
+        left: 0;
+        opacity: 1;
+        pointer-events: all;
+    }
+}

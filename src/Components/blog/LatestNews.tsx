@@ -2,6 +2,7 @@ import { AppMiniLogo } from "../../assets/AppLogo"
 import { news } from "../../data/news"
 import { IUpcomingEvents } from "../../utils/interface"
 import { styles } from "../../utils/styles"
+import bgLogo from '../../assets/blog-logo-bg.png'
 
 export const LatestNews = () => {
 
@@ -16,7 +17,8 @@ export const LatestNews = () => {
                 {news.map((news: IUpcomingEvents, index: number) =>
                     <article key={index} className="border-red-primary border-[1px] rounded-[4px] overflow-hidden bg-white max-w-[450px] grow basis-[300px]">
                         <figure><img src={news.img} alt={news.name} className="w-full h-[200px] sm:h-[250px] object-cover" /></figure>
-                        <div className="px-4 py-4 md:py-6">
+                        <div className="px-4 py-4 md:py-6 relative overflow-hidden isolate">
+                            <img src={bgLogo} alt="app background logo" className="absolute z-[-1] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none max-h-[97%] opacity-20" />
                             <p role='time' className="text-[#2D2D2D] flex items-center justify-center gap-2 mb-2">
                                 <span>{news.month}</span>
                                 <span className="font-medium">{news.date}</span>

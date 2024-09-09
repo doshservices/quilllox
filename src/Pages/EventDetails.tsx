@@ -5,14 +5,15 @@ import { styles } from '../utils/styles'
 import { Link } from 'react-router-dom'
 import { Tickets } from '../Components/events/Tickets'
 import { frontTicket } from '../data/frontTicket'
+import { PagesContainer } from '../Components/PagesContainer'
 
 const EventDetails = () => {
     return (
-        <>
+        <PagesContainer>
             <figure className='bg-[#171016] relative z-10'>
                 <img className='w-full' src={asakeBanner} alt="event img" />
             </figure>
-            <div className='text-white grid sm:grid-cols-2 md:grid-cols-[300px,_1fr] gap-x-8 md:gap-x-[8%] gap-y-8 px-[5%] lg:px-[9%] py-12 bg-[#171016] border-b-red-primary border-b-[1px]'>
+            <div className='text-white grid sm:grid-cols-2 md:grid-cols-[300px,_1fr] gap-x-8 md:gap-x-[8%] gap-y-8 px-[5%] lg:px-[9%] py-12 bg-[#171016]'>
                 <div className='ssm:max-w-[300px]'>
                     <img src={tourLogo} className='w-full mx-auto' alt="" />
                     <section className='bg-[#1C141B] my-6 rounded-[4px] p-4 border-[1px] border-[#0000001A]'>
@@ -86,7 +87,7 @@ const EventDetails = () => {
                 </div>
             </div>
             <PrivateHire />
-        </>
+        </PagesContainer>
     )
 }
 

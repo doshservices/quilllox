@@ -6,12 +6,14 @@ import AllEvents from "./Pages/AllEvents";
 import Contact from "./Pages/Contact";
 import EventDetails from "./Pages/EventDetails";
 import Checkout from "./Pages/Checkout";
+import ScrollToTop from "./Components/ScrollPageToTop";
 
 const App = () => {
 
   return (
     <BrowserRouter>
       <AppNav />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/all-events" element={<AllEvents />} />

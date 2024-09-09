@@ -3,6 +3,7 @@ import tourLogo from '../assets/35f1cf5d-17a3-4eac-bfa0-1f2bfe2f59ec.png'
 import { PaymentForm } from '../Components/Checkout/PaymentForm';
 import { PaymentMethod } from '../Components/Checkout/PaymentMethod';
 import { PrivateHire } from '../Components/PrivateHire';
+import { PagesContainer } from '../Components/PagesContainer';
 
 const Checkout = () => {
 
@@ -12,7 +13,7 @@ const Checkout = () => {
     }
 
     return (
-        <>
+        <PagesContainer>
             <div className="text-white font-montserrat flex px-[5%] justify-between items-center gap-4 py-6 flex-wrap border-b-red-primary border-b-[1px]">
                 <p className="text-xl sm:text-3xl">CHECKOUT</p>
                 <div className="flex items-center justify-between gap-y-4 gap-x-4 sm:gap-x-12">
@@ -57,7 +58,7 @@ const Checkout = () => {
                 </div>
             </div>
             <PrivateHire />
-        </>
+        </PagesContainer>
     )
 }
 
