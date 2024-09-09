@@ -80,3 +80,8 @@ body::after {
         pointer-events: all;
     }
 }
+
+.home-hero-video {
+    width: 100% !important;
+    height: 100% !important;
+}

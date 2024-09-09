@@ -8,18 +8,21 @@ import { styles } from "../utils/styles";
 import bgHero from '../assets/Hero Section.png'
 import { appLogoBg } from "../utils/constants";
 import { PagesContainer } from "../Components/PagesContainer";
+import ReactPlayer from "react-player";
 
 const HomePage = () => {
+
     return (
         <PagesContainer>
             <div style={{ background: `url(${bgHero})` }} className="min-h-[650px] 2xl:min-h-[750px] flex items-center justify-center px-[5%] border-b-red-primary border-b-[1px] bg-cover bg-no-repeat relative z-10 overflow-hidden">
-                <video
-                    autoPlay
-                    loop
+                <ReactPlayer
                     muted
-                    className="w-full h-full absolute scale-[3.8] xsm:scale-[3.2] ssm:scale-[2.7] sm:scale-[2] lg:scale-[1.3] 2xl:scale-[2] -z-[2] pointer-events-none"
-                    src="https://res.cloudinary.com/dbz1rgohb/video/upload/v1725829149/quillox/6309036_Women_Young_Women_3840x2160_xauarr.mp4">
-                </video>
+                    loop={true}
+                    controls={false}
+                    className="home-hero-video absolute scale-[3.8] xsm:scale-[3.2] ssm:scale-[2.7] sm:scale-[2] lg:scale-[1.3] 2xl:scale-[2] -z-[2] pointer-events-none"
+                    playing={true}
+                    url="https://res.cloudinary.com/dbz1rgohb/video/upload/v1725829149/quillox/6309036_Women_Young_Women_3840x2160_xauarr.mp4"
+                />
                 <div className="absolute inset-0 bg-black/30 -z-[1] pointer-events-none"></div>
                 <section className="text-white text-center max-w-[698px]">
                     <p className="font-medium text-sm font-montserrat">WELCOME TO</p>
