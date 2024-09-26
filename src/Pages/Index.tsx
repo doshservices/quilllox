@@ -14,7 +14,7 @@ const HomePage = () => {
 
     return (
         <PagesContainer>
-            <div style={{ background: `url(${bgHero})` }} className="min-h-[650px] 2xl:min-h-[750px] flex items-center justify-center px-[5%] border-b-red-primary border-b-[1px] bg-cover bg-no-repeat relative z-10 overflow-hidden">
+            <div style={{ background: `url(${bgHero})` }} className="min-h-[650px] 2xl:min-h-[750px] flex items-center justify-center px-[5%] border-b-red-primary border-b-[1px] bg-cover bg-no-repeat relative z-10 isolate overflow-hidden">
                 <ReactPlayer
                     muted
                     loop={true}
