@@ -8,7 +8,8 @@ export interface IUpcomingEvents {
     day: string,
     month: string,
     date: number,
-    img: string
+    image: string
+    _id: string
 }
 
 export interface DropdownProps {
@@ -32,4 +33,14 @@ export interface ITicket {
         type: string
         price: number
     }[]
+}
+
+export interface IEvent {
+    name: string
+    coverImage: string
+    date: string
+    description: string
+    startTime: string
+    endTime: string
+    image: string
 }

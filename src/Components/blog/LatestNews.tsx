@@ -1,6 +1,5 @@
 import { AppMiniLogo } from "../../assets/AppLogo"
 import { news } from "../../data/news"
-import { IUpcomingEvents } from "../../utils/interface"
 import { styles } from "../../utils/styles"
 import bgLogo from '../../assets/blog-logo-bg.png'
 
@@ -14,7 +13,7 @@ export const LatestNews = () => {
             <p className="text-light300 font-medium text-sm mb-2">LAGOS BEST NIGHTCLUB</p>
             <h3 id='upcoming-events' className="text-light300 font-normal text-lg sm:text-3xl font-montserrat">OUR LATEST NEWS</h3>
             <div className="flex gap-4 md:gap-6 justify-center mt-16 flex-wrap lg:w-[90%] mx-auto">
-                {news.map((news: IUpcomingEvents, index: number) =>
+                {news.map((news, index: number) =>
                     <article key={index} className="border-red-primary border-[1px] rounded-[4px] overflow-hidden bg-white max-w-[450px] grow basis-[300px]">
                         <figure><img src={news.img} alt={news.name} className="w-full h-[200px] sm:h-[250px] object-cover" /></figure>
                         <div className="px-4 py-4 md:py-6 relative overflow-hidden isolate">

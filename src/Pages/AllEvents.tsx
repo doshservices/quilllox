@@ -4,7 +4,6 @@ import DateDropdown from "../Components/dropdown/DateDropdown";
 import { PrivateHire } from "../Components/PrivateHire";
 import { upcomingEvents } from "../data/upcomingEvents";
 import { appLogoBg } from "../utils/constants";
-import { IUpcomingEvents } from "../utils/interface";
 import { PagesContainer } from "../Components/PagesContainer";
 
 const AllEvents = () => {
@@ -47,7 +46,7 @@ const AllEvents = () => {
                 </div>
                 <section id='upcoming-events'>
                     <div className={`grid ssm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8`}>
-                        {events?.map((event: IUpcomingEvents, index: number) =>
+                        {events?.map((event, index: number) =>
                             <Link to={`/event/${event?.name?.replace(/\s+/g, '-')}/${event?.day}`} key={index} className="border-[1px] border-red-primary rounded-[4px] overflow-hidden block">
                                 <div className="text-white font-montserrat bg-[#1C141B]">
                                     <figure className="overflow-hidden">

@@ -3,14 +3,21 @@ import { AppMiniLogo } from "../assets/AppLogo";
 import { LatestNews } from "../Components/blog/LatestNews";
 import UpComingEvents from "../Components/events/UpComingEvents";
 import { PrivateHire } from "../Components/PrivateHire";
-import { upcomingEvents } from "../data/upcomingEvents";
 import { styles } from "../utils/styles";
 import bgHero from '../assets/Hero Section.png'
 import { appLogoBg } from "../utils/constants";
 import { PagesContainer } from "../Components/PagesContainer";
 import ReactPlayer from "react-player";
+import { useEvents } from "../requests/events";
+import { useEffect } from "react";
 
 const HomePage = () => {
+
+    const { getEvents, events } = useEvents()
+
+    useEffect(() => {
+        getEvents()
+    }, [getEvents])
 
     return (
         <PagesContainer>
@@ -50,7 +57,7 @@ const HomePage = () => {
                     <Link className={`${styles?.primaryBtn} text-[.8rem] ssm:text-sm text-white`} to='/all-events'>View all events</Link>
                 </div>
                 <UpComingEvents
-                    events={upcomingEvents}
+                    events={events}
                     rows={'xsm:grid-cols-2 md:grid-cols-4'}
                 />
             </div>

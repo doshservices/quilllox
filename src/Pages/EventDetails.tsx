@@ -1,24 +1,38 @@
-import asakeBanner from '../assets/asake-img.png'
 import { PrivateHire } from '../Components/PrivateHire'
-import tourLogo from '../assets/35f1cf5d-17a3-4eac-bfa0-1f2bfe2f59ec.png'
 import { styles } from '../utils/styles'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Tickets } from '../Components/events/Tickets'
 import { frontTicket } from '../data/frontTicket'
 import { PagesContainer } from '../Components/PagesContainer'
+import useEvents from '../requests/events'
+import { useEffect } from 'react'
+import { SyncLoader } from 'react-spinners'
+import moment from 'moment'
 
 const EventDetails = () => {
-    return (
+    const { id } = useParams()
+
+    const { getEventById, loading, event } = useEvents()
+
+    useEffect(() => {
+        getEventById(id)
+    }, [])
+
+    return loading ?
+        <div className='h-[60vh] flex justify-center items-center text-red-primary'>
+            <SyncLoader color='#d12229' />
+        </div>
+        :
         <PagesContainer>
-            <figure className='bg-[#171016] relative z-10'>
-                <img className='w-full' src={asakeBanner} alt="event img" />
+            <figure className='bg-[#171016] relative z-10 py-8 overflow-hidden border-b border-red-primary'>
+                <img className='w-full max-h-[370px]' src={event?.coverImage} alt="event img" />
             </figure>
             <div className='text-white grid sm:grid-cols-2 md:grid-cols-[300px,_1fr] gap-x-8 md:gap-x-[8%] gap-y-8 px-[5%] lg:px-[9%] py-12 bg-[#171016]'>
                 <div className='ssm:max-w-[300px]'>
-                    <img src={tourLogo} className='w-full mx-auto' alt="" />
+                    <img src={event?.image} className='w-full mx-auto' alt="" />
                     <section className='bg-[#1C141B] my-6 rounded-[4px] p-4 border-[1px] border-[#0000001A]'>
-                        <h3 className='font-montserrat text-xl font-medium'>Asake Lungu Boy Tour</h3>
-                        <p role='time' className='font-light font-nunito my-3'>Friday 06 Sept 2024, 22:00-05:00</p>
+                        <h3 className='font-montserrat text-xl font-medium'>{event?.description}</h3>
+                        <p role='time' className='font-light font-nunito my-3'>{moment(event?.date ?? 'N/A').format('dddd D MMMM y')}, {event?.startTime}-{event?.endTime}</p>
                         <p className='font-light font-nunito text-sm'>Performing</p>
                         <a className='text-yellow300 font-light text-sm underline font-nunito'>Asake</a>
                         <section className='mt-6 mb-16'>
@@ -41,7 +55,7 @@ const EventDetails = () => {
                     <Link to='/all-events' className="grid grid-cols-[52px,_1fr] lsm:grid-cols-[52px,_1fr,_52px] text-center items-center gap-4 ssm:gap-8 font-nunito text-[.93rem] bg-[#1C141B] rounded-[4px] border-[1px] border-[#0000001A]">
                         <svg width="50" height="40" viewBox="0 0 50 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="49" height="39" rx="1.5" stroke="#E2B756" />
-                            <g clip-path="url(#clip0_128_6662)">
+                            <g clipPath="url(#clip0_128_6662)">
                                 <path d="M20.0614 19.5607L20.9008 18.7261H32.2342C32.6952 18.7261 33.0691 19.0998 33.0691 19.5607C33.0691 20.0215 32.6952 20.3953 32.2342 20.3953H20.9008L20.0614 19.5607Z" fill="#F8F8F8" />
                                 <path d="M25.3152 24.8083C25.641 25.134 25.641 25.6624 25.3152 25.9882C25.1515 26.1518 24.9383 26.2328 24.7251 26.2328C24.5118 26.2328 24.2986 26.1518 24.135 25.9882L18.2955 20.1505C18.219 20.0739 18.1559 19.9809 18.1139 19.8773C18.0733 19.7707 18.0508 19.6671 18.0508 19.5606C18.0508 19.454 18.0733 19.3504 18.1094 19.2558C18.1559 19.1403 18.2175 19.0472 18.294 18.9706L24.1365 13.133C24.4623 12.8072 24.9909 12.8072 25.3167 13.133C25.6425 13.4587 25.6425 13.9871 25.3167 14.3128L20.0628 19.5606L25.3152 24.8084L25.3152 24.8083Z" fill="#F8F8F8" />
                             </g>
@@ -88,7 +102,6 @@ const EventDetails = () => {
             </div>
             <PrivateHire />
         </PagesContainer>
-    )
 }
 
 export default EventDetails
