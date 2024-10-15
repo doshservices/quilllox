@@ -3,12 +3,11 @@ import { IUpcomingEvents } from "../../utils/interface";
 import moment from "moment";
 
 const UpComingEventCard = (event: IUpcomingEvents, border?: string, bg?: string) => {
-    const name = event?.name?.replace(/\s+/g, '-')
 
     return (
-        <Link to={`/event/${name}/${event?._id}`} className="text-white font-montserrat flex flex-col">
+        <Link to={`/event/${event?.name.toLowerCase().replace(' ', '-')}/${event?._id}`} className="text-white font-montserrat flex flex-col">
             <div className="grow">
-                <img src={event.image} className="w-full min-h-full" alt={event?.name} />
+                <img src={event.image} className="w-full min-h-full border border-red-primary rounded-[4px]" alt={event?.name} />
             </div>
             <div className={`flex items-center gap-3 pt-4 ${bg} ${border}`}>
                 <p role='time' className="text-center pr-2 border-r-[2px] border-r-white">

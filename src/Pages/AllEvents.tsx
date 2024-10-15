@@ -2,16 +2,23 @@ import { Link } from "react-router-dom";
 import { AppMiniLogo } from "../assets/AppLogo";
 import DateDropdown from "../Components/dropdown/DateDropdown";
 import { PrivateHire } from "../Components/PrivateHire";
-import { upcomingEvents } from "../data/upcomingEvents";
 import { appLogoBg } from "../utils/constants";
 import { PagesContainer } from "../Components/PagesContainer";
+import useEvents from "../requests/events";
+import { useEffect } from "react";
+import { IUpcomingEvents } from "../utils/interface";
+import moment from "moment";
 
 const AllEvents = () => {
-    const events = [...upcomingEvents, ...upcomingEvents.slice(1, 3)]
+    const { getEvents, events } = useEvents()
+
+    useEffect(() => {
+        getEvents()
+    }, [getEvents])
 
     return (
         <PagesContainer>
-            <section className="text-center clear-startflex justify-center items-center px-[8%] py-16 relative z-10 bg-Primary200 overflow-hidden">
+            <section className="text-center clear-startflex justify-center items-center px-[8%] py-16 relative z-10 bg-[#171016] overflow-hidden">
                 <img src={appLogoBg} alt="app logo" className="max-w-[70%] sm:h-[97%] absolute z-[-1] opacity-5 left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]" />
                 <div>
                     <div className="mx-auto w-fit mb-3">
@@ -46,20 +53,18 @@ const AllEvents = () => {
                 </div>
                 <section id='upcoming-events'>
                     <div className={`grid ssm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8`}>
-                        {events?.map((event, index: number) =>
-                            <Link to={`/event/${event?.name?.replace(/\s+/g, '-')}/${event?.day}`} key={index} className="border-[1px] border-red-primary rounded-[4px] overflow-hidden block">
-                                <div className="text-white font-montserrat bg-[#1C141B]">
-                                    <figure className="overflow-hidden">
-                                        <img src={event.img} className="w-full scale-105" alt={event.name} />
-                                    </figure>
-                                    <div className={`flex items-center gap-3 py-4 px-2 md:px-6`}>
-                                        <p role='time' className="text-center pr-2 border-r-[1px] border-r-white">
-                                            <span className="block text-xs md:text-sm">{event.month}</span>
-                                            <span className="text-lg md:text-[1.4rem] leading-[1.2] block">{event.date}</span>
-                                            <span className="block text-xs md:text-sm">{event.day}</span>
-                                        </p>
-                                        <p className="grow text-sm lg:text-base">{event.name}</p>
-                                    </div>
+                        {events?.map((event: IUpcomingEvents) =>
+                            <Link to={`/event/${event?.name.toLocaleLowerCase().replace(' ', '-')}/${event?._id}`} key={event?._id} className="text-white font-montserrat flex flex-col border border-red-primary rounded-[4px] overflow-hidden">
+                                <div className="grow">
+                                    <img src={event.image} className="w-full min-h-full" alt={event?.name} />
+                                </div>
+                                <div className={`flex items-center gap-3 py-4 bg-[#1a151c] px-4 md:px-6`}>
+                                    <p role='time' className="text-center pr-2 border-r-[2px] border-r-white">
+                                        <span className="block text-xs md:text-sm">{moment(event?.date ?? 'N/A').format('MMMM')}</span>
+                                        <span className="text-lg md:text-[1.4rem] leading-[1.2] block">{moment(event?.date ?? 'N/A').format('dddd')}</span>
+                                        <span className="block text-xs md:text-sm">{moment(event?.date ?? 'N/A').format('D')}</span>
+                                    </p>
+                                    <p className="grow text-sm lg:text-base">{event.name}</p>
                                 </div>
                             </Link>
                         )}

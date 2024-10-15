@@ -26,13 +26,9 @@ export interface DateDropdownProps {
     placeholder: string
 }
 
-export interface ITicket {
-    borderColor: string
-    position: string
-    ticket: {
-        type: string
-        price: number
-    }[]
+export interface ITables {
+    name: string
+    _id: string
 }
 
 export interface IEvent {

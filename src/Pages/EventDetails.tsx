@@ -1,21 +1,24 @@
 import { PrivateHire } from '../Components/PrivateHire'
 import { styles } from '../utils/styles'
 import { Link, useParams } from 'react-router-dom'
-import { Tickets } from '../Components/events/Tickets'
-import { frontTicket } from '../data/frontTicket'
 import { PagesContainer } from '../Components/PagesContainer'
 import useEvents from '../requests/events'
 import { useEffect } from 'react'
 import { SyncLoader } from 'react-spinners'
 import moment from 'moment'
+import useTables from '../requests/tables'
+import { Tables } from '../Components/events/Tables'
+import { ITables } from '../utils/interface'
 
 const EventDetails = () => {
     const { id } = useParams()
 
     const { getEventById, loading, event } = useEvents()
+    const { getTableSection, tableSection } = useTables()
 
     useEffect(() => {
         getEventById(id)
+        getTableSection()
     }, [])
 
     return loading ?
@@ -31,7 +34,7 @@ const EventDetails = () => {
                 <div className='ssm:max-w-[300px]'>
                     <img src={event?.image} className='w-full mx-auto' alt="" />
                     <section className='bg-[#1C141B] my-6 rounded-[4px] p-4 border-[1px] border-[#0000001A]'>
-                        <h3 className='font-montserrat text-xl font-medium'>{event?.description}</h3>
+                        <h3 className='font-montserrat text-xl font-medium'>{event?.name}</h3>
                         <p role='time' className='font-light font-nunito my-3'>{moment(event?.date ?? 'N/A').format('dddd D MMMM y')}, {event?.startTime}-{event?.endTime}</p>
                         <p className='font-light font-nunito text-sm'>Performing</p>
                         <a className='text-yellow300 font-light text-sm underline font-nunito'>Asake</a>
@@ -73,31 +76,13 @@ const EventDetails = () => {
                         This event is for 18 and over - No refunds will be issued for under 18s.
                     </p>
                     <h3 className='font-montserrat text-lg font-normal px-4 mt-6 mb-2'>TICKETS</h3>
-                    <Tickets
-                        position='Frontstage Seat'
-                        borderColor='border-t-yellow300'
-                        ticket={frontTicket}
-                    />
-                    <Tickets
-                        position='Midstage Seat'
-                        borderColor='border-t-red-primary'
-                        ticket={frontTicket}
-                    />
-                    <Tickets
-                        position='Backstage Seat'
-                        borderColor='border-t-yellow300'
-                        ticket={frontTicket}
-                    />
-                    <Tickets
-                        position='Upstage Seat'
-                        borderColor='border-t-red-primary'
-                        ticket={frontTicket}
-                    />
-                    <Tickets
-                        position='Downstage Seat'
-                        borderColor='border-t-yellow300'
-                        ticket={frontTicket}
-                    />
+                    {tableSection.map((table: ITables) =>
+                        <Tables
+                            key={table?._id}
+                            name={table?.name}
+                            _id={table?._id}
+                        />
+                    )}
                 </div>
             </div>
             <PrivateHire />
