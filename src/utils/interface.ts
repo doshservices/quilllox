@@ -31,6 +31,14 @@ export interface ITables {
     _id: string,
 }
 
+export interface IStoreTable {
+    amount: number | string
+    table: string
+    event: string
+    date: string
+    name: string
+}
+
 export interface IEvent {
     name: string
     coverImage: string

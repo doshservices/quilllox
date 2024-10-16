@@ -2,13 +2,15 @@ import { useEffect, useRef, useState } from "react"
 import { ITables } from "../../utils/interface"
 import useTables from "../../requests/tables"
 import SeatDropdown from "../dropdown/SeatDropdown"
-import { useLocalStorageState } from "../../utils/useLocalStorage"
+import { useDispatch } from "react-redux"
+import { addTable, emptyTable } from "../../store/slice/bookingSlice"
 
 export const Tables = ({ _id, name }: ITables) => {
 
     const ticketMenu = useRef<HTMLDivElement>(null)
     const dropDownArrow = useRef<SVGSVGElement>(null)
     const [numOfseats, setNumOfSeats] = useState<number>(0)
+    const dispatch = useDispatch()
 
     const { getTableById, table } = useTables()
 
@@ -30,12 +32,11 @@ export const Tables = ({ _id, name }: ITables) => {
     const handleSelectNumOfSeat = (number: number) => {
         setNumOfSeats(number)
     }
-    const [seat, setSeat] = useLocalStorageState('q-table', null);
-
     useEffect(() => {
         if (numOfseats > 0) {
-            // localStorage.setItem('q-table', JSON.stringify(eventTable))
-            setSeat(eventTable)
+            dispatch(addTable(eventTable))
+        } else if (numOfseats < 0) {
+            dispatch(emptyTable())
         }
     }, [numOfseats])
 
@@ -70,10 +71,7 @@ export const Tables = ({ _id, name }: ITables) => {
                             </div>
                         </div>
                         <p className="text-[.93rem]">N{table?.price}</p>
-                        <div className="">
-                            {/* <button className="inline-flex items-center gap-2 w-fit text-[#2D2D2D] font-montserrat bg-light400 border border-[#BABABA] rounded-[4px] shadow-sm py-2 px-4 cursor-default focus:outline-none focus:ring-1 focus:ring-yellow-300 focus:border-yellow300 text-base">
-                                {table?.numberOfGuest}
-                            </button> */}
+                        <div>
                             <SeatDropdown
                                 maxWidth="w-[80px]"
                                 options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
