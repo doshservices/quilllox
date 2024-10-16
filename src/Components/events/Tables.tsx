@@ -1,18 +1,43 @@
-import { useEffect, useRef } from "react"
-// import SeatDropdown from "../dropdown/SeatDropdown"
+import { useEffect, useRef, useState } from "react"
 import { ITables } from "../../utils/interface"
 import useTables from "../../requests/tables"
+import SeatDropdown from "../dropdown/SeatDropdown"
+import { useLocalStorageState } from "../../utils/useLocalStorage"
 
 export const Tables = ({ _id, name }: ITables) => {
 
     const ticketMenu = useRef<HTMLDivElement>(null)
     const dropDownArrow = useRef<SVGSVGElement>(null)
+    const [numOfseats, setNumOfSeats] = useState<number>(0)
 
     const { getTableById, table } = useTables()
 
     useEffect(() => {
         getTableById(_id)
     }, [])
+
+    const eventId = localStorage.getItem('event-id')
+    const eventDate = localStorage.getItem('event-date')
+
+    const eventTable = {
+        amount: numOfseats,
+        table: _id,
+        event: eventId ?? '',
+        date: eventDate,
+        name
+    }
+
+    const handleSelectNumOfSeat = (number: number) => {
+        setNumOfSeats(number)
+    }
+    const [seat, setSeat] = useLocalStorageState('q-table', null);
+
+    useEffect(() => {
+        if (numOfseats > 0) {
+            // localStorage.setItem('q-table', JSON.stringify(eventTable))
+            setSeat(eventTable)
+        }
+    }, [numOfseats])
 
     const showTicket = () => {
         ticketMenu?.current?.classList.toggle('hidden')
@@ -31,7 +56,7 @@ export const Tables = ({ _id, name }: ITables) => {
                 {table?.map((table: {
                     name: string
                     price: number,
-                    numberOfGuest: string,
+                    numberOfGuest?: string,
                     _id: string
                 }) =>
                     <div key={table?._id} className="flex justify-between items-center gap-4 flex-wrap py-3 px-4 border-b-[#F8F8F81A] border-b-[1px]">
@@ -46,14 +71,14 @@ export const Tables = ({ _id, name }: ITables) => {
                         </div>
                         <p className="text-[.93rem]">N{table?.price}</p>
                         <div className="">
-                            <button className="inline-flex items-center gap-2 w-fit text-[#2D2D2D] font-montserrat bg-light400 border border-[#BABABA] rounded-[4px] shadow-sm py-2 px-4 cursor-default focus:outline-none focus:ring-1 focus:ring-yellow-300 focus:border-yellow300 text-base">
+                            {/* <button className="inline-flex items-center gap-2 w-fit text-[#2D2D2D] font-montserrat bg-light400 border border-[#BABABA] rounded-[4px] shadow-sm py-2 px-4 cursor-default focus:outline-none focus:ring-1 focus:ring-yellow-300 focus:border-yellow300 text-base">
                                 {table?.numberOfGuest}
-                            </button>
-                            {/* <SeatDropdown
+                            </button> */}
+                            <SeatDropdown
                                 maxWidth="w-[80px]"
                                 options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                                 placeholder="0"
-                                onSelect={() => { }} /> */}
+                                onSelect={handleSelectNumOfSeat} />
                             <p className="text-xs font-light mt-1">No of Guests</p>
                         </div>
                     </div>

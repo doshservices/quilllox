@@ -28,7 +28,7 @@ export interface DateDropdownProps {
 
 export interface ITables {
     name: string
-    _id: string
+    _id: string,
 }
 
 export interface IEvent {
@@ -39,4 +39,5 @@ export interface IEvent {
     startTime: string
     endTime: string
     image: string
+    pg: number
 }

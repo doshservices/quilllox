@@ -6,7 +6,7 @@ const UpComingEventCard = (event: IUpcomingEvents, border?: string, bg?: string)
 
     return (
         <Link to={`/event/${event?.name.toLowerCase().replace(' ', '-')}/${event?._id}`} className="text-white font-montserrat flex flex-col">
-            <div className="grow">
+            <div className="grow min-h-[300px]">
                 <img src={event.image} className="w-full min-h-full border border-red-primary rounded-[4px]" alt={event?.name} />
             </div>
             <div className={`flex items-center gap-3 pt-4 ${bg} ${border}`}>
