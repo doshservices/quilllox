@@ -7,8 +7,6 @@ import useReservation from "../../requests/reservation";
 import { IEvent } from "../../utils/interface";
 
 export const PaymentForm = (event: IEvent) => {
-    console.log(event);
-
 
     const [formData, setFormData] = useState({
         firstName: '',
