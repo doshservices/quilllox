@@ -7,11 +7,15 @@ import Contact from "./Pages/Contact";
 import EventDetails from "./Pages/EventDetails";
 import Checkout from "./Pages/Checkout";
 import ScrollToTop from "./Components/ScrollPageToTop";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
 
   return (
     <BrowserRouter>
+      <Toaster
+        position="top-right"
+      />
       <AppNav />
       <ScrollToTop />
       <Routes>

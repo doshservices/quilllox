@@ -23,6 +23,10 @@ const EventDetails = () => {
     useEffect(() => {
         getEventById(id)
         getTables()
+        localStorage.setItem('q-$$..##', id as string)
+        if (event) {
+            localStorage.setItem('qe-$$..##', JSON.stringify(event))
+        }
     }, [])
 
     const seat: any = useSelector((state: RootState) => state?.table?.table)

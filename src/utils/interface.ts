@@ -35,17 +35,26 @@ export type ITables = {
     tableSection: string;
     createdAt: string;
     updatedAt: string;
-    __v: number;
+    __v?: number;
     description: string;
-    images: string[];  // Array of image URLs
+    images: string[];
+    amount?: number;
 };
 
 export interface IStoreTable {
-    amount: number | string
-    table: string
-    event: string
-    date: string
-    name: string
+    _id: string;
+    name: string;
+    numberOfGuest: number;
+    maxNumberOfGuest: number;
+    price: number;
+    tableSection: string;
+    createdAt: string;
+    updatedAt: string;
+    __v?: number;
+    description: string;
+    images: string[];
+    amount?: number;
+    date?: string
 }
 
 export interface IEvent {
@@ -57,4 +66,5 @@ export interface IEvent {
     endTime: string
     image: string
     pg: number
+    _id?: string
 }
