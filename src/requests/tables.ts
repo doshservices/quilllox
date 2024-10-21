@@ -10,9 +10,9 @@ export const useTables = () => {
     const getTables = async () => {
         setLoading(true)
         try {
-            const response = await axiosInstance.get('event')
+            const response = await axiosInstance.get('table')
             setLoading(false)
-            setTables(response?.data?.data?.event)
+            setTables(response?.data?.data?.table)
         } catch (error) {
             setLoading(false)
             return error
@@ -47,32 +47,6 @@ export const useTables = () => {
             setLoading(false)
         }
     }
-
-    // const sign_up = async (payload: SignUpPayload, gender: string, address: string) => {
-    //     setLoading(true)
-
-    //     const data = {
-    //         ...payload,
-    //         role: 'USER',
-    //         isGoogleSigned: false,
-    //         gender,
-    //         address
-    //     }
-
-    //     try {
-    //         const response = await axiosInstance.post('user/register', data)
-    //         toast.success('Registeration Succesful! A one time password has been sent to your mail')
-    //         setLoading(false)
-    //         dispatch(setVerificationMail(response?.data?.data?.newUser?.email))
-    //         setTimeout(() => {
-    //             navigate('/verify-user')
-    //         }, 2000)
-    //     } catch (error) {
-    //         setLoading(false)
-    //     } finally {
-    //         setLoading(false)
-    //     }
-    // }
 
     return {
         getTables,

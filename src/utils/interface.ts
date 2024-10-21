@@ -26,10 +26,19 @@ export interface DateDropdownProps {
     placeholder: string
 }
 
-export interface ITables {
-    name: string
-    _id: string,
-}
+export type ITables = {
+    _id: string;
+    name: string;
+    numberOfGuest: number;
+    maxNumberOfGuest: number;
+    price: number;
+    tableSection: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    description: string;
+    images: string[];  // Array of image URLs
+};
 
 export interface IStoreTable {
     amount: number | string

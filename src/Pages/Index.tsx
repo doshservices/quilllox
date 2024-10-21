@@ -10,14 +10,15 @@ import { PagesContainer } from "../Components/PagesContainer";
 import ReactPlayer from "react-player";
 import { useEvents } from "../requests/events";
 import { useEffect } from "react";
+import { SyncLoader } from "react-spinners";
 
 const HomePage = () => {
 
-    const { getEvents, events } = useEvents()
+    const { getEvents, events, loading } = useEvents()
 
     useEffect(() => {
         getEvents()
-    }, [getEvents])
+    }, [])
 
     return (
         <PagesContainer>
@@ -51,16 +52,22 @@ const HomePage = () => {
                 <p className="font-nunito text-ash100 text-sm font-semibold leading-[1.8] my-8">Quilox Nightclub and Bar, located on Victoria Island, redefines elite nightlife in Nigeria with its breathtaking design and unparalleled ambiance. Since opening in 2013, Quilox has set the standard as one of the most prestigious and opulent nightclubs in the country. The club boasts a stunning, one-of-a-kind decor and cutting-edge lighting that create an immersive experience. Paired with world-class customer service, renowned DJs, and an over-the-top sound system, Quilox delivers an unforgettable night for those who seek the extraordinary.</p>
                 <button className={`${styles?.primaryBtn} mx-auto text-white`}>Explore Quilox in VR</button>
             </section>
-            <div className="px-[5%] py-16 bg-Primary200 border-t-red-primary border-t-[1px] border-b-red-primary border-b-[1px] relative z-10 overflow-hidden">
-                <div className="flex items-center justify-between gap-4 flex-wrap mb-8">
-                    <h3 id='upcoming-events' className="text-light300 font-normal text-[.95rem] ssm:text-lg sm:text-3xl font-montserrat">UPCOMING EVENTS</h3>
-                    <Link className={`${styles?.primaryBtn} text-[.8rem] ssm:text-sm text-white`} to='/all-events'>View all events</Link>
+            {loading ?
+                <div className='h-[40vh] flex justify-center items-center text-red-primary'>
+                    <SyncLoader color='#d12229' />
                 </div>
-                <UpComingEvents
-                    events={events}
-                    rows={'xsm:grid-cols-2 md:grid-cols-4'}
-                />
-            </div>
+                :
+                <div className="px-[5%] py-16 bg-Primary200 border-t-red-primary border-t-[1px] border-b-red-primary border-b-[1px] relative z-10 overflow-hidden">
+                    <div className="flex items-center justify-between gap-4 flex-wrap mb-8">
+                        <h3 id='upcoming-events' className="text-light300 font-normal text-[.95rem] ssm:text-lg sm:text-3xl font-montserrat">UPCOMING EVENTS</h3>
+                        <Link className={`${styles?.primaryBtn} text-[.8rem] ssm:text-sm text-white`} to='/all-events'>View all events</Link>
+                    </div>
+                    <UpComingEvents
+                        events={events}
+                        rows={'xsm:grid-cols-2 md:grid-cols-4'}
+                    />
+                </div>
+            }
             <LatestNews />
             <PrivateHire />
         </PagesContainer>
