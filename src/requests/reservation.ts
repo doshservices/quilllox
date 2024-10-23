@@ -15,7 +15,7 @@ export const useReservation = () => {
     const [loading, setLoading] = useState(false)
     const [reservationId, setReservationId] = useState<string>()
 
-    const markAsPaid = async (id: string) => {
+    const markAsPaid = async () => {
         try {
             await axiosInstance.patch(`reservation/mark-as-paid?reservationId=671917ec0b85ed4953ccc556`)
             toast.success('Payment Succesful')
