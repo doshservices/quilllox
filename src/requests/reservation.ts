@@ -13,17 +13,32 @@ type ReservationPayload = {
 
 export const useReservation = () => {
     const [loading, setLoading] = useState(false)
+    const [reservationId, setReservationId] = useState<string>()
+
+    const markAsPaid = async (id: string) => {
+        try {
+            await axiosInstance.patch(`reservation/mark-as-paid?reservationId=671917ec0b85ed4953ccc556`)
+            toast.success('Payment Succesful')
+        } catch (error) {
+            console.log(error);
+            toast.error('Unable to verify payment')
+            return error
+        }
+    }
 
     const createReservation = async (payload: ReservationPayload, payment: () => void) => {
 
         setLoading(true)
         try {
-            await axiosInstance.post('reservation', {
+            const res = await axiosInstance.post('reservation', {
                 ...payload
             })
-            toast.success('Reservation Succesful')
-            payment()
-            setLoading(false)
+            if (res?.data?.data) {
+                setReservationId(res?.data?.data?.reservation?._id)
+                toast.success('Reservation Succesful')
+                payment()
+                setLoading(false)
+            }
         } catch (error) {
             console.log(error);
             toast.error('Unable to make reservation at the moment')
@@ -36,6 +51,8 @@ export const useReservation = () => {
 
     return {
         createReservation,
+        reservationId,
+        markAsPaid,
         loading
     }
 }

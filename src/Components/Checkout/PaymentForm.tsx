@@ -2,17 +2,20 @@
 import { useState } from "react";
 import { styles } from "../../utils/styles"
 import { PaymentField } from "../Input/PaymentField"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import useReservation from "../../requests/reservation";
 import { IEvent } from "../../utils/interface";
 import { closePaymentModal, useFlutterwave } from 'flutterwave-react-v3';
-import { emptyTable } from "../../store/slice/bookingSlice";
+// import { emptyTable, makePayment } from "../../store/slice/bookingSlice";
+import toast from "react-hot-toast";
 
 export const PaymentForm = (event: IEvent) => {
 
-    const { createReservation, loading } = useReservation()
-    const dispatch = useDispatch()
+    const { createReservation, loading, reservationId } = useReservation()
+    console.log(reservationId);
+
+    // const dispatch = useDispatch()
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -65,8 +68,17 @@ export const PaymentForm = (event: IEvent) => {
         createReservation({ ...payload }, () => {
             if (paymentProp === 'pay') {
                 handleFlutterPayment({
-                    callback: () => {
-                        dispatch(emptyTable())
+                    callback: async () => {
+                        try {
+                            await axiosInstance.patch(`reservation/mark-as-paid?reservationId=671917ec0b85ed4953ccc556`)
+                            toast.success('Payment Succesful')
+                        } catch (error) {
+                            console.log(error);
+                            toast.error('Unable to verify payment')
+                            return error
+                        }
+                        // dispatch(emptyTable())
+                        // dispatch(makePayment(''))
                         closePaymentModal()
                     },
                     onClose: () => { },

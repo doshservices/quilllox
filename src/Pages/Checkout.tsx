@@ -8,6 +8,7 @@ import useEvents from '../requests/events';
 import { SyncLoader } from 'react-spinners';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Checkout = () => {
     const navigate = useNavigate()
@@ -16,9 +17,17 @@ const Checkout = () => {
         setPaymentTab(tab)
     }
 
+    const seat: any = useSelector((state: RootState) => state?.table?.table)
+
+    useEffect(() => {
+        if (!seat) {
+            navigate(-1)
+        }
+    }, [])
+
+
     const { getEventById, loading, event } = useEvents()
     const id: string | null = localStorage.getItem('q-$$..##');
-    console.log(event);
 
     useEffect(() => {
         if (id) {

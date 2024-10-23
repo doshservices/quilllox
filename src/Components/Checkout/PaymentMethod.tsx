@@ -17,7 +17,7 @@ export const PaymentMethod = ({ switchTabs }: Props) => {
                 <p className='text-sm font-light mt-1 mb-4'>Friday 06 Sept 2024, 22:00-05:00</p>
                 <div className='flex items-center justify-between font-nunito border-t-[#F8F8F81A] border-t-[1px] py-4'>
                     <p>{seat?.numberOfGuest} x {seat?.name}</p>
-                    <p className='text-[.93rem]'>N{seat.price}</p>
+                    <p className='text-[.93rem]'>N{seat?.price}</p>
                 </div>
                 <p className='font-nunito flex justify-end items-center text-lg gap-4  border-t-[#F8F8F81A] border-t-[1px] pt-4'><span className='text-sm font-light'>Total</span>N {seat?.price}</p>
             </div>
