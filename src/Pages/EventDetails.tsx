@@ -68,14 +68,14 @@ const EventDetails = () => {
                             <>
                                 <button
                                     onClick={() => {
-                                        dispatch(makePayment(''))
+                                        dispatch(makePayment('pay'))
                                         setTimeout(() => {
                                             navigate('/checkout')
                                         }, 1000)
                                     }}
                                     className={`${styles.primaryBtn} mx-auto w-fit`}>Book Now</button>
                                 <button onClick={() => {
-                                    dispatch(makePayment('pay'))
+                                    dispatch(makePayment(''))
                                     setTimeout(() => {
                                         navigate('/checkout')
                                     }, 1000)

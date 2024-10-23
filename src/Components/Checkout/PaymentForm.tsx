@@ -2,15 +2,17 @@
 import { useState } from "react";
 import { styles } from "../../utils/styles"
 import { PaymentField } from "../Input/PaymentField"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import useReservation from "../../requests/reservation";
 import { IEvent } from "../../utils/interface";
 import { closePaymentModal, useFlutterwave } from 'flutterwave-react-v3';
+import { emptyTable } from "../../store/slice/bookingSlice";
 
 export const PaymentForm = (event: IEvent) => {
 
     const { createReservation, loading } = useReservation()
+    const dispatch = useDispatch()
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -63,8 +65,8 @@ export const PaymentForm = (event: IEvent) => {
         createReservation({ ...payload }, () => {
             if (paymentProp === 'pay') {
                 handleFlutterPayment({
-                    callback: (response) => {
-                        console.log(response);
+                    callback: () => {
+                        dispatch(emptyTable())
                         closePaymentModal()
                     },
                     onClose: () => { },
