@@ -67,4 +67,7 @@ export interface IEvent {
     image: string
     pg: number
     _id?: string
+    v?: string
+    createdAt: string,
+    updatedAt: string
 }

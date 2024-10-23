@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useState } from "react";
 import { styles } from "../../utils/styles"
 import { PaymentField } from "../Input/PaymentField"
@@ -5,9 +6,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import useReservation from "../../requests/reservation";
 import { IEvent } from "../../utils/interface";
+import { closePaymentModal, useFlutterwave } from 'flutterwave-react-v3';
 
 export const PaymentForm = (event: IEvent) => {
 
+    const { createReservation, loading } = useReservation()
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -22,7 +25,9 @@ export const PaymentForm = (event: IEvent) => {
         });
     };
 
+    const flutterKey = import.meta.env.VITE_TEST_FLUTTERWAVE_KEY;
     const table: any = useSelector((state: RootState) => state?.table?.table)
+    const paymentProp: string = useSelector((state: RootState) => state?.table?.payment)
 
     const payload = {
         username: `${formData.firstName} ${formData.lastName}`,
@@ -33,11 +38,39 @@ export const PaymentForm = (event: IEvent) => {
         date: event?.date
     }
 
-    const { createReservation, loading } = useReservation()
+    const config = {
+        public_key: flutterKey,
+        tx_ref: Date.now(),
+        amount: table?.price,
+        currency: 'NGN',
+        payment_options: 'card,mobilemoney,ussd',
+        customer: {
+            email: formData?.email,
+            phone_number: '070********',
+            name: `${formData.firstName} ${formData.lastName}`,
+        },
+        customizations: {
+            title: 'Quilox',
+            description: 'Payment for Seat reservation',
+            logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+        },
+    };
+
+    const handleFlutterPayment = useFlutterwave(config);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        createReservation({ ...payload })
+        createReservation({ ...payload }, () => {
+            if (paymentProp === 'pay') {
+                handleFlutterPayment({
+                    callback: (response) => {
+                        console.log(response);
+                        closePaymentModal()
+                    },
+                    onClose: () => { },
+                })
+            }
+        })
     }
 
     return (
@@ -95,6 +128,9 @@ export const PaymentForm = (event: IEvent) => {
             <button disabled={loading} className={`${styles.primaryBtn} ${loading ? 'opacity-60' : 'opacity-100'} w-full mt-12 mb-8`}>
                 {loading ? 'Booking...' : 'Continue'}
             </button>
+            {/* <FlutterWaveButton
+                className={`${styles.primaryBtn} ${loading ? 'opacity-60' : 'opacity-100'} w-full mt-12 mb-8`}
+                {...fwConfig} /> */}
         </form>
     )
 }

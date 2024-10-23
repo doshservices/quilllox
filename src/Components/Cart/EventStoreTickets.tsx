@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 
 export const EventStoreTickets = () => {
-    const seat = useSelector((state: RootState) => state?.table?.table)
+    const seat: any = useSelector((state: RootState) => state?.table?.table)
     return (
         <div className='bg-[#2D2D2D] p-4 text-white mt-4 rounded-[4px]'>
             <h3 className='text-lg font-montserrat font-medium'>Asake Lungu Boy Tour</h3>

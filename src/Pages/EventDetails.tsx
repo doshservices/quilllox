@@ -1,6 +1,6 @@
 import { PrivateHire } from '../Components/PrivateHire'
 import { styles } from '../utils/styles'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PagesContainer } from '../Components/PagesContainer'
 import useEvents from '../requests/events'
 import { useEffect } from 'react'
@@ -11,7 +11,7 @@ import { Tables } from '../Components/events/Tables'
 import { ITables } from '../utils/interface'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/rootReducer'
-import { emptyTable } from '../store/slice/bookingSlice'
+import { emptyTable, makePayment } from '../store/slice/bookingSlice'
 
 const EventDetails = () => {
     const { id } = useParams()
@@ -19,6 +19,7 @@ const EventDetails = () => {
     const { getEventById, loading, event } = useEvents()
     const { tables, getTables } = useTables()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         getEventById(id)
@@ -64,7 +65,27 @@ const EventDetails = () => {
                             }
                         </section>
                         {seat &&
-                            <Link to='/checkout' className={`${styles.primaryBtn} mx-auto w-fit`}>Book Now</Link>
+                            <>
+                                <button
+                                    onClick={() => {
+                                        dispatch(makePayment(''))
+                                        setTimeout(() => {
+                                            navigate('/checkout')
+                                        }, 1000)
+                                    }}
+                                    className={`${styles.primaryBtn} mx-auto w-fit`}>Book Now</button>
+                                <button onClick={() => {
+                                    dispatch(makePayment('pay'))
+                                    setTimeout(() => {
+                                        navigate('/checkout')
+                                    }, 1000)
+                                }} className='flex w-fit mx-auto gap-2 items-center mt-4'>
+                                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.1 14H9.9V8.6H8.1V14ZM9 6.8C9.255 6.8 9.46875 6.71375 9.64125 6.54125C9.81375 6.36875 9.9 6.155 9.9 5.9C9.9 5.645 9.81375 5.43125 9.64125 5.25875C9.46875 5.08625 9.255 5 9 5C8.745 5 8.53125 5.08625 8.35875 5.25875C8.18625 5.43125 8.1 5.645 8.1 5.9C8.1 6.155 8.18625 6.36875 8.35875 6.54125C8.53125 6.71375 8.745 6.8 9 6.8ZM9 18.5C7.755 18.5 6.585 18.2638 5.49 17.7913C4.395 17.3188 3.4425 16.6775 2.6325 15.8675C1.8225 15.0575 1.18125 14.105 0.70875 13.01C0.23625 11.915 0 10.745 0 9.5C0 8.255 0.23625 7.085 0.70875 5.99C1.18125 4.895 1.8225 3.9425 2.6325 3.1325C3.4425 2.3225 4.395 1.68125 5.49 1.20875C6.585 0.73625 7.755 0.5 9 0.5C10.245 0.5 11.415 0.73625 12.51 1.20875C13.605 1.68125 14.5575 2.3225 15.3675 3.1325C16.1775 3.9425 16.8188 4.895 17.2913 5.99C17.7638 7.085 18 8.255 18 9.5C18 10.745 17.7638 11.915 17.2913 13.01C16.8188 14.105 16.1775 15.0575 15.3675 15.8675C14.5575 16.6775 13.605 17.3188 12.51 17.7913C11.415 18.2638 10.245 18.5 9 18.5ZM9 16.7C11.01 16.7 12.7125 16.0025 14.1075 14.6075C15.5025 13.2125 16.2 11.51 16.2 9.5C16.2 7.49 15.5025 5.7875 14.1075 4.3925C12.7125 2.9975 11.01 2.3 9 2.3C6.99 2.3 5.2875 2.9975 3.8925 4.3925C2.4975 5.7875 1.8 7.49 1.8 9.5C1.8 11.51 2.4975 13.2125 3.8925 14.6075C5.2875 16.0025 6.99 16.7 9 16.7Z" fill="#E2B756" />
+                                    </svg>
+                                    <p className="font-light text-xs text-yellow300">Make a Reservation</p>
+                                </button>
+                            </>
                         }
                     </section>
                     <Link to='/all-events' className="grid grid-cols-[52px,_1fr] lsm:grid-cols-[52px,_1fr,_52px] text-center items-center gap-4 ssm:gap-8 font-nunito text-[.93rem] bg-[#1C141B] rounded-[4px] border-[1px] border-[#0000001A]">

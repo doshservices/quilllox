@@ -14,7 +14,7 @@ type ReservationPayload = {
 export const useReservation = () => {
     const [loading, setLoading] = useState(false)
 
-    const createReservation = async (payload: ReservationPayload) => {
+    const createReservation = async (payload: ReservationPayload, payment: () => void) => {
 
         setLoading(true)
         try {
@@ -22,6 +22,7 @@ export const useReservation = () => {
                 ...payload
             })
             toast.success('Reservation Succesful')
+            payment()
             setLoading(false)
         } catch (error) {
             console.log(error);

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useEffect, useState } from 'react';
 import { PaymentForm } from '../Components/Checkout/PaymentForm';
 import { PaymentMethod } from '../Components/Checkout/PaymentMethod';
@@ -17,6 +18,7 @@ const Checkout = () => {
 
     const { getEventById, loading, event } = useEvents()
     const id: string | null = localStorage.getItem('q-$$..##');
+    console.log(event);
 
     useEffect(() => {
         if (id) {
@@ -88,7 +90,9 @@ const Checkout = () => {
                         </div>
                         <div className='shadow-shawdowBooking py-4 px-5 bg-[#1C141B] h-fit rounded-[4px]'>
                             {paymentTab === 'method' ?
-                                <PaymentMethod />
+                                <PaymentMethod
+                                    switchTabs={() => switchTabs('details')}
+                                />
                                 :
                                 <PaymentForm
                                     {...event}

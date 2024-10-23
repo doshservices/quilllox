@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    table: null
+    table: null,
+    payment: ''
 };
 
 const tableSlice = createSlice({
@@ -14,11 +15,17 @@ const tableSlice = createSlice({
         emptyTable: (state) => {
             state.table = null;
         },
+        makePayment: (state, action) => {
+            state.payment = action.payload;
+        },
+        cancelPayment: (state) => {
+            state.payment = '';
+        },
     },
 });
 
 export const {
-    addTable, emptyTable
+    addTable, emptyTable, makePayment, cancelPayment
 } = tableSlice.actions;
 
 export default tableSlice.reducer;

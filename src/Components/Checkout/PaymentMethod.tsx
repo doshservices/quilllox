@@ -2,7 +2,11 @@ import { useSelector } from "react-redux"
 import { styles } from "../../utils/styles"
 import { RootState } from "../../store/rootReducer";
 
-export const PaymentMethod = () => {
+interface Props {
+    switchTabs: () => void
+}
+
+export const PaymentMethod = ({ switchTabs }: Props) => {
     const seat: any = useSelector((state: RootState) => state?.table?.table)
 
     return (
@@ -20,7 +24,7 @@ export const PaymentMethod = () => {
             {/* <div className='bg-[#2D2D2D] p-4 text-white mt-4 rounded-[4px] pb-12'>
                 <h3 className='text-lg font-montserrat font-medium border-b-[#F8F8F81A] border-b-[1px] pb-1'>Choose Payment Method</h3>
             </div> */}
-            <button className={`${styles.primaryBtn} w-full mt-12 mb-8`}>Continue</button>
+            <button onClick={() => switchTabs} className={`${styles.primaryBtn} w-full mt-12 mb-8`}>Continue</button>
         </>
     )
 }
